@@ -14,7 +14,7 @@ const viewpropertyRouter = require("./api/property/viewproperty");
 const likeRouter = require("./api/property/like");
 const interestedRouter = require("./api/property/requestdetails");
 
-const port = process.env.port || 5000;
+const port = process.env.PORT || 5000;
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -24,9 +24,10 @@ const uri =
 mongoose
   .connect(uri, {})
   .then(() => {
-    app.listen(port, "0.0.0.0");
-    console.log("connected to DB");
-    console.log(`Listening at ${port}`);
+    app.listen(port, "0.0.0.0", function () {
+      console.log("connected to DB");
+      console.log(`Listening at ${port}`);
+    });
   })
   .catch((err) => console.log("Error: ", err));
 
